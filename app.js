@@ -4,11 +4,14 @@ var bodyParser=require('body-parser');
 var mongoose = require('mongoose');
 const session = require('express-session');
 const passport = require('passport');
+const ObjectID = require("mongodb").ObjectID;
+const mongojs = require("mongojs");
+const DB = mongojs("mongodb://admin:admin@ds123499.mlab.com:23499/tourhubdb", ["createTour"]);
 const LocalStrategy = require('passport-local').Strategy;
 app.use(bodyParser.json()); 
 Tourist=require('./models/tourist');
 //connect to Mongoose
-var uri='mongodb://localhost/tourhubdb';
+var uri='mongodb://admin:admin@ds123499.mlab.com:23499/tourhubdb';
 mongoose.connect(uri,{ useMongoClient: true });
 var db=mongoose.connection;
 //db.open('localhost/tourhubdb',{useMongoClient: true});
@@ -17,6 +20,7 @@ app.get('/',function(req, res){
     res.send("plz use /api/tourist");
 });
 app.get('/api/tourist',function(req, res ){
+    
      Tourist.getTourist(function(err,tourist){
          if(err)
          {
@@ -54,8 +58,9 @@ app.post('/api/tourist',function(req, res ){
 });
 
 app.put('/api/tourist/:_id',function(req, res ){
-    var id=req.param._id;
     var tourist=req.body;
+    const id = req.params._id;
+    console.log(id)
     Tourist.updateTourist(id,tourist,{},function(err,tourist){
         if(err)
         {
@@ -127,5 +132,42 @@ app.delete('/api/tourist/:_id',function(req, res ){
     });
    
 });
-app.listen(3000);
+
+//place Tour
+app.post('/createTour', (req, res, next) => {
+    let Tour = req.body;
+    // console.log (req.body);
+        DB.createTour.save(Tour, (err, resp) => {
+            if (err) return next(err);
+            res.json(resp);
+        });
+    
+});
+
+app.get('/allEvents', (req, res, next) => {
+    DB.createTour.find((err, users) => {
+     if (err) return next(err);
+     res.json(users);
+    });
+   });
+
+   app.get('/event/:dest/:id', function(req, res) {
+    var from = req.params.dest;
+    var id=req.params.id;
+    console.log(id);
+    DB.createTour.find( {destination: id , from: to} ,(err, users) => {
+     if (err) return next(err);
+     res.json(users);
+    });
+   });
+
+   app.get('/trends/:id', function(req, res) {
+    var id=req.params.id;
+    console.log(id);
+    DB.createTour.find( {destination: id} ,(err, users) => {
+     if (err) return next(err);
+     res.json(users);
+    });
+   });
+app.listen(process.env.PORT || '3000');
 console.log('runing on port 3000...');

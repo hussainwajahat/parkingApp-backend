@@ -2,13 +2,22 @@ var mongoose = require('mongoose');
 const bcrypt = require('bcrypt-nodejs');
 //tourist Schema
 var touristschema=mongoose.Schema({
-    username:{
-        type:String,
-        require:true
-    },
     password:
     {
         type:String
+    },
+    firstName:{
+        type:String
+    },
+    lastName:{
+        type:String
+    },
+    contactNo:{
+        type:String
+    },
+    email:{
+        type:String,
+        require:true
     }
 });
 
@@ -23,7 +32,7 @@ touristschema.methods.validPassword = function (password){
 	return bcrypt.compareSync(password,this.password);
 }
 
-
+module.exports=mongoose.model('tourist',touristschema);
 //get Tourist
 module.exports.getTourist=function(callback,limit){
     Tourist.find(callback).limit(limit);
@@ -44,10 +53,12 @@ module.exports.addTourist=function(tourist,callback){
 }
   
 module.exports.updateTourist=function(id,tourist,options,callback){
-    var query=Tourist.findOne(id);
-    var update ={
-        name:tourist.name,
-        discription:tourist.discription
+    var query=Tourist.findOne({_id : id });
+    var update = {
+        firstName:tourist.firstName,
+        lastName:tourist.lastName,
+        password:touristschema.methods.generateHash(tourist.password),
+        contactNo:tourist.contactNo
     } 
     Tourist.findOneAndUpdate(query,update,options,callback);
     //Tour.find(callback);
@@ -60,4 +71,3 @@ module.exports.deleteTourist=function(id,callback){
     //Tour.find(callback);
     //console.log(callback);
 }
-module.exports=mongoose.model('tourist',touristschema);
