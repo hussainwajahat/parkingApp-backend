@@ -32,42 +32,42 @@ touristschema.methods.validPassword = function (password){
 	return bcrypt.compareSync(password,this.password);
 }
 
-module.exports=mongoose.model('tourist',touristschema);
+module.exports=mongoose.model('user',touristschema);
 //get Tourist
-module.exports.getTourist=function(callback,limit){
-    Tourist.find(callback).limit(limit);
-    //Tour.find(callback);
-    //console.log(callback);
-}
+// module.exports.getTourist=function(callback,limit){
+//     Tourist.find(callback).limit(limit);
+//     //Tour.find(callback);
+//     //console.log(callback);
+// }
 
-module.exports.getTouristById=function(id,callback){
-    Tourist.findOne(id,callback);
-    //Tour.find(callback);
-    //console.log(callback);
-}
+// module.exports.getTouristById=function(id,callback){
+//     Tourist.findOne(id,callback);
+//     //Tour.find(callback);
+//     //console.log(callback);
+// }
 
-module.exports.addTourist=function(tourist,callback){
-    Tourist.create(tourist,callback);
-    //Tour.find(callback);
-    //console.log(callback);
-}
+// module.exports.addTourist=function(tourist,callback){
+//     Tourist.create(tourist,callback);
+//     //Tour.find(callback);
+//     //console.log(callback);
+// }
   
-module.exports.updateTourist=function(id,tourist,options,callback){
-    var query=Tourist.findOne({_id : id });
-    var update = {
-        firstName:tourist.firstName,
-        lastName:tourist.lastName,
-        password:touristschema.methods.generateHash(tourist.password),
-        contactNo:tourist.contactNo
-    } 
-    Tourist.findOneAndUpdate(query,update,options,callback);
-    //Tour.find(callback);
-    //console.log(callback);
-}
+// module.exports.updateTourist=function(id,tourist,options,callback){
+//     var query=Tourist.findOne({_id : id });
+//     var update = {
+//         firstName:tourist.firstName,
+//         lastName:tourist.lastName,
+//         password:touristschema.methods.generateHash(tourist.password),
+//         contactNo:tourist.contactNo
+//     } 
+//     Tourist.findOneAndUpdate(query,update,options,callback);
+//     //Tour.find(callback);
+//     //console.log(callback);
+// }
 
-module.exports.deleteTourist=function(id,callback){
-    //var query=Tourist.findOne(id);
-    Tourist.deleteOne(id,callback);
-    //Tour.find(callback);
-    //console.log(callback);
-}
+// module.exports.deleteTourist=function(id,callback){
+//     //var query=Tourist.findOne(id);
+//     Tourist.deleteOne(id,callback);
+//     //Tour.find(callback);
+//     //console.log(callback);
+// }
