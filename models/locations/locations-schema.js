@@ -6,7 +6,7 @@ var locations=mongoose.Schema({
         type:String
     },
     slots:{
-        type:String,
+        type:Number,
         require:true
     }
 });
