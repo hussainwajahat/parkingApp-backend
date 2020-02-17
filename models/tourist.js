@@ -6,15 +6,6 @@ var touristschema=mongoose.Schema({
     {
         type:String
     },
-    firstName:{
-        type:String
-    },
-    lastName:{
-        type:String
-    },
-    contactNo:{
-        type:String
-    },
     email:{
         type:String,
         require:true

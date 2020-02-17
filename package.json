@@ -10,7 +10,7 @@
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "*",
-    "express": "*",
+    "express": "^4.17.1",
     "express-session": "^1.15.6",
     "mongodb": "^3.0.6",
     "mongojs": "^2.5.0",
