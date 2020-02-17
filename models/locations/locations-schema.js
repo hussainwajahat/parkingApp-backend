@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 //tourist Schema
 var locations=mongoose.Schema({
-    text:
+    name:
     {
         type:String
     },
