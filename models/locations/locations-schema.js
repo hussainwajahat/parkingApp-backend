@@ -5,10 +5,7 @@ var locations=mongoose.Schema({
     {
         type:String
     },
-    slots:{
-        type:Number,
-        require:true
-    }
+    slots:[]
 });
 
 module.exports=mongoose.model('locations',locations);
