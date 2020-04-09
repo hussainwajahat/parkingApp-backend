@@ -5,7 +5,7 @@ var locations=mongoose.Schema({
     {
         type:String
     },
-    slots:[]
+    slots:[] 
 });
 
 module.exports=mongoose.model('locations',locations);
