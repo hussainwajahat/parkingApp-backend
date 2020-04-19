@@ -1,5 +1,5 @@
 {
-  "name": "crudrestfullapi",
+  "name": "parking-app",
   "version": "1.0.0",
   "description": "Simple CRUD API",
   "main": "app.js",
