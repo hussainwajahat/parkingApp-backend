@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 const bcrypt = require('bcrypt-nodejs');
 //tourist Schema
-var touristschema=mongoose.Schema({
+var userSchema=mongoose.Schema({
     password:
     {
         type:String
@@ -14,16 +14,16 @@ var touristschema=mongoose.Schema({
 
 
 
-touristschema.methods.generateHash = function (password){
+userSchema.methods.generateHash = function (password){
 	return bcrypt.hashSync(password,bcrypt.genSaltSync(8),null);
 }
 
-touristschema.methods.validPassword = function (password){
+userSchema.methods.validPassword = function (password){
 	console.log (bcrypt.compareSync(password,this.password))
 	return bcrypt.compareSync(password,this.password);
 }
 
-module.exports=mongoose.model('user',touristschema);
+module.exports=mongoose.model('user',userSchema);
 //get Tourist
 // module.exports.getTourist=function(callback,limit){
 //     Tourist.find(callback).limit(limit);

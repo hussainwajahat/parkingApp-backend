@@ -1,6 +1,6 @@
 const LocalStrategy = require('passport-local').Strategy;
 
-const User = require ('./tourist');
+const User = require ('./userSchema');
 module.exports = function(passport){
   passport.serializeUser(function(user, done) {
     done(null, user.id);
