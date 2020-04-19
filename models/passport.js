@@ -1,6 +1,6 @@
 const LocalStrategy = require('passport-local').Strategy;
 
-const User = require ('./tourist');
+const User = require ('./userSchema');
 module.exports = function(passport){
   passport.serializeUser(function(user, done) {
     done(null, user.id);
@@ -27,9 +27,7 @@ module.exports = function(passport){
             var newUser = new User();
             newUser.email = email;
             newUser.password = newUser.generateHash(password);
-            newUser.firstName = req.body.firstName;
-            newUser.lastName = req.body.lastName;
-            newUser.contactNo = req.body.contactNo;
+
             newUser.save(function(err){
             if(err) throw err;
             return done(null,true,newUser);

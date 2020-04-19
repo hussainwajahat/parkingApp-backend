@@ -16,6 +16,7 @@ mongoose.connect(uri,{ useMongoClient: true });
 var db=mongoose.connection;
 //db.open('localhost/tourhubdb',{useMongoClient: true});
 require('./models/passport')(passport);
+app.use('/locations', require('./models/locations'));
 app.get('/',function(req, res){ 
     res.send("plz use /api/tourist");
 });
