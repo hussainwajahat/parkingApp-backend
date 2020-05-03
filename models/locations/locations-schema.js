@@ -1,11 +1,8 @@
 var mongoose = require('mongoose');
 //tourist Schema
 var locations=mongoose.Schema({
-    name:
-    {
-        type:String
-    },
-    slots:[] 
+    name:String,
+    slotsData : Array
 });
 
 module.exports=mongoose.model('locations',locations);
