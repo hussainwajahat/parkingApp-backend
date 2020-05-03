@@ -9,7 +9,7 @@ const mongojs = require("mongojs");
 // const DB = mongojs("mongodb://admin:admin@ds123499.mlab.com:23499/tourhubdb", ["createTour"]);
 const LocalStrategy = require('passport-local').Strategy;
 app.use(bodyParser.json()); 
-Tourist=require('./models/tourist');
+//Tourist=require('./models/tourist');
 //connect to Mongoose
 var uri='mongodb://admin:admin1122@ds046549.mlab.com:46549/parking-app';
 mongoose.connect(uri,{ useMongoClient: true });
@@ -17,9 +17,9 @@ var db=mongoose.connection;
 //db.open('localhost/tourhubdb',{useMongoClient: true});
 require('./models/passport')(passport);
 app.use('/locations', require('./models/locations'));
-app.get('/',function(req, res){ 
-    res.send("plz use /api/tourist");
-});
+// app.get('/',function(req, res){ 
+//     res.send("plz use /api/tourist");
+// });
 
     app.get('/', function(req, res){
         res.json('Welcome to Node.js Authentication App. Please login/register .');
