@@ -18,7 +18,7 @@ var db=mongoose.connection;
 require('./models/passport')(passport);
 app.use('/locations', require('./models/locations'));
 app.get('/',function(req, res){ 
-    res.send("plz use /api/tourist");
+    res.send("EXPRESS SERVER");
 });
 
     app.get('/', function(req, res){
