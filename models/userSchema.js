@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 const bcrypt = require('bcrypt-nodejs');
-//tourist Schema
+//user Schema
 var userSchema=mongoose.Schema({
     password:
     {

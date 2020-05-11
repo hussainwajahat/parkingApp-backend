@@ -1,15 +1,22 @@
 var express = require("express");
 var app=express();
+const cors = require('cors');
 var bodyParser=require('body-parser');
 var mongoose = require('mongoose');
 const session = require('express-session');
 const passport = require('passport');
 const ObjectID = require("mongodb").ObjectID;
 const mongojs = require("mongojs");
+
 // const DB = mongojs("mongodb://admin:admin@ds123499.mlab.com:23499/tourhubdb", ["createTour"]);
 const LocalStrategy = require('passport-local').Strategy;
-app.use(bodyParser.json()); 
-Tourist=require('./models/tourist');
+// CORS origin
+app.use(cors());
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+// parse application/json
+app.use(bodyParser.json())
+//Tourist=require('./models/tourist');
 //connect to Mongoose
 var uri='mongodb://admin:admin1122@ds046549.mlab.com:46549/parking-app';
 mongoose.connect(uri,{ useMongoClient: true });
@@ -21,12 +28,6 @@ app.get('/',function(req, res){
     res.send("EXPRESS SERVER");
 });
 
-    app.get('/', function(req, res){
-        res.json('Welcome to Node.js Authentication App. Please login/register .');
-    });
-    app.get('/login', function(req, res){
-        res.json({message: ('loginMessage')});
-    });
    /* app.post('/login', passport.authenticate('login',{
         successRedirect : '/profile',
         failureRedirect : '/login',
