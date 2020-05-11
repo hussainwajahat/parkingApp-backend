@@ -28,7 +28,7 @@ app.get('/',function(req, res){
     res.send("EXPRESS SERVER");
 });
 
-   /* app.post('/login', passport.authenticate('login',{
+/* app.post('/login', passport.authenticate('login',{
         successRedirect : '/profile',
         failureRedirect : '/login',
         failureFlash : true
@@ -37,8 +37,8 @@ app.get('/',function(req, res){
         res.json({message: req.flash('registerMessage')});
     });*/
     app.post("/login",
- function(req,res,next){
-   passport.authenticate('login', function(err, user, info){
+function(req,res,next){
+    passport.authenticate('login', function(err, user, info){
     //console.log (res.json( user))   
     res.json( user);
 })(req,res,next); 
@@ -47,10 +47,10 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.post("/register",
- function(req,res,next){
-   passport.authenticate('register', function(err, user, info){
+function(req,res,next){
+    passport.authenticate('register', function(err, user, info){
     res.json( user);      
-  })(req,res,next); 
+})(req,res,next); 
 });
     /*app.post('/register', passport.authenticate('register',{
         successRedirect : '/profile',
@@ -68,7 +68,7 @@ app.post("/register",
         if(req.isAuthenticated())
         return next();
         res.redirect('/');
-      };
+    };
 
 
 app.listen(process.env.PORT || '3000');

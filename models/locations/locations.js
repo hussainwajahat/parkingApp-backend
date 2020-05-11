@@ -1,5 +1,6 @@
+var abstract = require('../abstract');
 const Location = require ('./locations-schema');
-var controller = {}
+var controller = abstract(Location);
 
 /*
   TODO's:
@@ -8,15 +9,10 @@ var controller = {}
     - make updation for loations [Wajahat]
     - Introduce Abstract Class [Manzar]
 */
-controller.getLocations = (req, res) =>   {
-    Location.find({
-    }, function(err, lists) {
-      return res.json(lists);
-    });
-  };
 
 controller.create = (req, res) =>   {
-    Location.create(req.body, function(err, model) { 
+    var query = req.body.id ? {_id : req.body.id} : {name:req.body.name}
+    Location.update(query, req.body, {upsert: true}, function(err, model) { 
     if(err) { return res.send(err); }
     console.log('abstract models : ',model)
     return res.status(200).json(model);
