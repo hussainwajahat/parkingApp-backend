@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-//tourist Schema
+//slots Schema
 var locations=mongoose.Schema({
     name:String,
     slotsData : Array

@@ -23,4 +23,15 @@ controller.create = (req, res) =>   {
     });
 }
 
+controller.update = (req, res) =>   {
+  Location.updateOne({"_id" : req.body._id}, {$set: {'name': req.body.name,'slotsData':req.body.slotsData}}, function(err, model) {
+      if(err) { return res.status(404).send(err); 
+    } else {
+      // console.log(model,'responce')
+      return res.status(200).json(model);
+    }
+  })
+
+}
+
 module.exports = controller;

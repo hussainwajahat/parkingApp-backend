@@ -24,16 +24,10 @@ var db=mongoose.connection;
 //db.open('localhost/tourhubdb',{useMongoClient: true});
 require('./models/passport')(passport);
 app.use('/locations', require('./models/locations'));
-// app.get('/',function(req, res){ 
-//     res.send("plz use /api/tourist");
-// });
+app.get('/',function(req, res){ 
+    res.send("EXPRESS SERVER");
+});
 
-    app.get('/', function(req, res){
-        res.json('Welcome to Node.js Authentication App. Please login/register .');
-    });
-    app.get('/login', function(req, res){
-        res.json({message: ('loginMessage')});
-    });
    /* app.post('/login', passport.authenticate('login',{
         successRedirect : '/profile',
         failureRedirect : '/login',
