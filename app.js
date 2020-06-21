@@ -7,6 +7,8 @@ const session = require('express-session');
 const passport = require('passport');
 const ObjectID = require("mongodb").ObjectID;
 const mongojs = require("mongojs");
+var http = require('http');
+
 
 // const DB = mongojs("mongodb://admin:admin@ds123499.mlab.com:23499/tourhubdb", ["createTour"]);
 const LocalStrategy = require('passport-local').Strategy;
@@ -70,7 +72,47 @@ function(req,res,next){
         return next();
         res.redirect('/');
     };
+    var server = http.createServer(app);
+    var io = require('socket.io')(server);
+    require('./socket')(io);
+let port = (process.env.PORT || '3000')
+server.listen(port);
+server.on('error', onError);
+server.on('listening', onListening);
+console.log('listening on port', port);
 
-
-app.listen(process.env.PORT || '3000');
-console.log('runing on port 3000...');
+function onError(error) {
+    if (error.syscall !== 'listen') {
+      throw error;
+    }
+  
+    var bind = typeof port === 'string'
+      ? 'Pipe ' + port
+      : 'Port ' + port;
+  
+    // handle specific listen errors with friendly messages
+    switch (error.code) {
+      case 'EACCES':
+        console.error(bind + ' requires elevated privileges');
+        process.exit(1);
+        break;
+      case 'EADDRINUSE':
+        console.error(bind + ' is already in use');
+        process.exit(1);
+        break;
+      default:
+        throw error;
+    }
+  }
+  
+  /**
+   * Event listener for HTTP server "listening" event.
+   */
+  
+  function onListening() {
+    var addr = server.address();
+    var bind = typeof addr === 'string'
+      ? 'pipe ' + addr
+      : 'port ' + addr.port;
+    console.log('in onlistening function Listening on ' + bind);
+  }
