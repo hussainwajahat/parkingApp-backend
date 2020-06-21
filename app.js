@@ -24,6 +24,7 @@ var db=mongoose.connection;
 //db.open('localhost/tourhubdb',{useMongoClient: true});
 require('./models/passport')(passport);
 app.use('/locations', require('./models/locations'));
+app.use('/garages', require('./models/garages'));
 app.get('/',function(req, res){ 
     res.send("EXPRESS SERVER");
 });
