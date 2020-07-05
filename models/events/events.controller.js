@@ -11,5 +11,6 @@ controller.index = (req,res) => {
 controller.create = (req,res) => {
   const _io = req.io;
   _io.emit('updateDobSSN',req.body);  
+  res.status(200).send('event send successfully')
 }
 module.exports = controller;
