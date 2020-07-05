@@ -13,5 +13,4 @@ module.exports = function (io) {
 			console.log('**socket disconnected** client ID -> ', client.id)
 		});
 	});
-
 }

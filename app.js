@@ -27,6 +27,7 @@ var db=mongoose.connection;
 require('./models/passport')(passport);
 app.use('/locations', require('./models/locations'));
 app.use('/garages', require('./models/garages'));
+
 app.get('/',function(req, res){ 
     res.send("EXPRESS SERVER");
 });
@@ -75,6 +76,11 @@ function(req,res,next){
     var server = http.createServer(app);
     var io = require('socket.io')(server);
     require('./socket')(io);
+    app.use('/events', (req,res,next)=> {
+        req.io = io;
+        next();
+    },require('./models/events'));
+
 let port = (process.env.PORT || '3000')
 server.listen(port);
 server.on('error', onError);
