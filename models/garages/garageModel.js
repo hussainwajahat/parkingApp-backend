@@ -5,6 +5,7 @@ var Schema = mongoose.Schema;
 
 var garageSchema = new Schema({
     location : String,
+    name : String,
     ownerName : String,
     cellNo : String,
     days : Array,
