@@ -27,7 +27,7 @@ var db=mongoose.connection;
 require('./models/passport')(passport);
 app.use('/locations', require('./models/locations'));
 app.use('/garages', require('./models/garages'));
-
+app.use('/users', require('./models/users'));
 app.get('/',function(req, res){ 
     res.send("EXPRESS SERVER");
 });
