@@ -5,8 +5,6 @@ var Schema = mongoose.Schema;
 
 var garageSchema = new Schema({
     location : String,
-    ownerName : String,
-    cellNo : String,
     days : Array,
     rate : String,
     hour : String,
@@ -21,6 +19,11 @@ var garageSchema = new Schema({
     garageDate : {
                     type : Date,
                     default : new Date()
-                    }
+                    },
+    userSchema : {
+    type : Schema.Types.ObjectId,
+    ref: 'user'
+  }
+
 });
 module.exports = mongoose.model('garages', garageSchema);

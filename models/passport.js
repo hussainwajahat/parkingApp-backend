@@ -15,19 +15,26 @@ module.exports = function(passport){
   passport.use('register',new LocalStrategy({
     usernameField: 'email',
     passwordField: 'password',
+    nameField: 'name',
+    cellNoField: 'cellNo',
+    cityField: 'city',
     passReqToCallback:true
     },
-    function(req,email, password, done) {
-      console.log(email);
+    function(req,email, password, name, cellNo, city, done) {
+      console.log(name,cellNo,city);
+      debugger
         User.findOne({ email: email }, function(err, user) {
+          debugger
         if (err) { return done(err); }
         if (user) {
             return done(null, false, false);
         }else{
             var newUser = new User();
             newUser.email = email;
+           // newUser.customerName = customerName;
+          //  newUser.cellNo = cellNo;
+            //newUser.city = city;
             newUser.password = newUser.generateHash(password);
-
             newUser.save(function(err){
             if(err) throw err;
             return done(null,true,newUser);
@@ -42,7 +49,7 @@ module.exports = function(passport){
     passReqToCallback:true
     },
     function(req,email, password, done) {
-      User.findOne({email: email }, function(err, user) {
+      User.findOne({email: email,userType:"Admin" }, function(err, user) {
         // console.log(user,'usereserserers');
         if (err) { return done(err); }
         if (!user) {
@@ -55,7 +62,7 @@ module.exports = function(passport){
           return done(null, false, { message : 'Incorrect password!' });
         }
         //console.log (   'jhjhgjhgjh');
-        return   done (null,user,user) ;
+        return   done(null,user,user) ;
       });
     }
   ));
