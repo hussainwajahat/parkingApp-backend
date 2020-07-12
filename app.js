@@ -45,9 +45,11 @@ app.get('/',function(req, res){
 function(req,res,next){
     passport.authenticate('login', function(err, user, info){
     //console.log (res.json( user)) 
- 
-
-    res.json( user);
+ let q = {}
+    q['userScehmaId'] = info.id;
+    q['OneToken'] =  req.body.token
+    userInfo.updateToken(q,res)
+    //res.json( user);
 })(req,res,next); 
 });
 app.use(passport.initialize());

@@ -22,6 +22,9 @@ var garageSchema = new Schema({
     },
     address: {
         type : String
+    },
+    OneToken: {
+        type : String
     }
 });
 module.exports = mongoose.model('user_info', garageSchema);
