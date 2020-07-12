@@ -22,7 +22,7 @@ var garageSchema = new Schema({
                     },
     userSchema : {
     type : Schema.Types.ObjectId,
-    ref: 'user'
+    ref: 'user_info'
   }
 
 });

@@ -15,16 +15,12 @@ module.exports = function(passport){
   passport.use('register',new LocalStrategy({
     usernameField: 'email',
     passwordField: 'password',
-    nameField: 'name',
-    cellNoField: 'cellNo',
-    cityField: 'city',
     passReqToCallback:true
     },
-    function(req,email, password, name, cellNo, city, done) {
-      console.log(name,cellNo,city);
-      debugger
+    function(req,email, password,done) {
+
         User.findOne({ email: email }, function(err, user) {
-          debugger
+
         if (err) { return done(err); }
         if (user) {
             return done(null, false, false);
@@ -49,7 +45,7 @@ module.exports = function(passport){
     passReqToCallback:true
     },
     function(req,email, password, done) {
-      User.findOne({email: email,userType:"Admin" }, function(err, user) {
+      User.findOne({email: email}, function(err, user) {
         // console.log(user,'usereserserers');
         if (err) { return done(err); }
         if (!user) {

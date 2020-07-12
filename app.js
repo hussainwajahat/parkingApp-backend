@@ -8,6 +8,7 @@ const passport = require('passport');
 const ObjectID = require("mongodb").ObjectID;
 const mongojs = require("mongojs");
 var http = require('http');
+const userInfo = require('./models/usersInfo/userController')
 
 
 // const DB = mongojs("mongodb://admin:admin@ds123499.mlab.com:23499/tourhubdb", ["createTour"]);
@@ -27,7 +28,7 @@ var db=mongoose.connection;
 require('./models/passport')(passport);
 app.use('/locations', require('./models/locations'));
 app.use('/garages', require('./models/garages'));
-app.use('/users', require('./models/users'));
+app.use('/usersInfo', require('./models/usersInfo'));
 app.get('/',function(req, res){ 
     res.send("EXPRESS SERVER");
 });
@@ -43,7 +44,9 @@ app.get('/',function(req, res){
     app.post("/login",
 function(req,res,next){
     passport.authenticate('login', function(err, user, info){
-    //console.log (res.json( user))   
+    //console.log (res.json( user)) 
+ 
+
     res.json( user);
 })(req,res,next); 
 });
@@ -53,7 +56,10 @@ app.use(passport.session());
 app.post("/register",
 function(req,res,next){
     passport.authenticate('register', function(err, user, info){
-    res.json( user);      
+
+      req.body.userScehmaId = info.id
+      userInfo.createUser(req,res)
+      //res.json( user);      
 })(req,res,next); 
 });
     /*app.post('/register', passport.authenticate('register',{

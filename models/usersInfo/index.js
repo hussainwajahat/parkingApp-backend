@@ -6,9 +6,10 @@ const router = express.Router();
 console.log('Required User');
 
 router.get('/', user.index);
-router.post('/createUser', user.create);
-router.post('/updateUser', user.create);
+router.post('/createUser', user.createUser);
+router.post('/updateUser', user.update);
 router.post('/con',user.findUser);
 router.delete('/:id',user.destroy);
 
 module.exports = router;
+

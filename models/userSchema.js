@@ -6,23 +6,11 @@ var userSchema=mongoose.Schema({
     {
         type:String
     },
-    userType: {
-        type: String,
-        default: "Customer"
-    },
     email:{
         type:String,
         require:true
     },
-    name:{
-        type : String
-    } ,
-    cellNo: {
-        type : String
-    },
-    city: {
-        type : String
-    }
+
 
 });
 

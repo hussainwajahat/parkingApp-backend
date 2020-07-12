@@ -8,6 +8,7 @@ router.post('/addLocations', controller.create);
 router.post('/updateLocations', controller.create);
 router.delete('/:id', controller.destroy);
 router.post('/updateSlotStatus', controller.update);
-router.post('/con',controller.findByCondition)
+router.post('/con',controller.findByCondition);
+router.post('/sendOneSignalNoti',controller.sendOneSignalNoti)
 
 module.exports = router;

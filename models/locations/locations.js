@@ -1,6 +1,7 @@
 var abstract = require('../abstract');
 const Location = require ('./locations-schema');
 var controller = abstract(Location);
+var pushNoti = require('../pushNotification');
 
 /*
   TODO's:
@@ -28,6 +29,20 @@ controller.update = (req, res) =>   {
     }
   })
 
+}
+
+controller.sendOneSignalNoti = (req, res) => {
+
+    console.log(process.env.SIGNALONE_APP_ID)
+    debugger
+    let msg = "OneSignal Notification has been sent"
+    var message = {
+      app_id: process.env.SIGNALONE_APP_ID,
+      contents: { "en":  msg},
+      included_segments: ["Subscribed Users"]
+  };
+  pushNoti(message)
+  
 }
 
 module.exports = controller;
