@@ -45,12 +45,13 @@ app.get('/',function(req, res){
     app.post("/login",
 function(req,res,next){
     passport.authenticate('login', function(err, user, info){
-      debugger;
+      
     //console.log (res.json( user)) 
  let q = {}
-    q['userScehmaId'] = info.id;
-    q['OneToken'] =  req.body.token
+    q['userScehmaId'] = info._id;
+    q['OneToken'] =  req.body.OneToken
     userInfo.updateToken(q,res)
+
     //res.json( user);
 })(req,res,next); 
 });
