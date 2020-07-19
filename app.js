@@ -9,6 +9,7 @@ const ObjectID = require("mongodb").ObjectID;
 const mongojs = require("mongojs");
 var http = require('http');
 const userInfo = require('./models/usersInfo/userController')
+require('dotenv').config();
 
 
 // const DB = mongojs("mongodb://admin:admin@ds123499.mlab.com:23499/tourhubdb", ["createTour"]);
@@ -44,6 +45,7 @@ app.get('/',function(req, res){
     app.post("/login",
 function(req,res,next){
     passport.authenticate('login', function(err, user, info){
+      debugger;
     //console.log (res.json( user)) 
  let q = {}
     q['userScehmaId'] = info.id;

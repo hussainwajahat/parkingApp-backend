@@ -33,14 +33,15 @@ controller.update = (req, res) =>   {
 
 controller.sendOneSignalNoti = (req, res) => {
 
-    console.log(process.env.SIGNALONE_APP_ID)
-    debugger
     let msg = "OneSignal Notification has been sent"
     var message = {
       app_id: process.env.SIGNALONE_APP_ID,
       contents: { "en":  msg},
-      included_segments: ["Subscribed Users"]
+     // included_segments: ["Subscribed Users"]
+      include_player_ids: [req.body.OneToken]
   };
+  console.log(message)
+  debugger
   pushNoti(message)
   
 }

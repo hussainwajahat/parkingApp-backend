@@ -1,15 +1,10 @@
 var abstract = require('../abstract');
-var Garage = require('./garageModel');
+var Garage = require('./bookGarageModel');
 var controller = abstract(Garage);
 
 controller.create = (req, res) =>   {
-    req.body['garageDate'] = new Date()
-    var query = req.body.id ? {_id : req.body.id} : {location:req.body.location,ownerName:req.body.ownerName}
-    Garage.update(query, req.body, {upsert: true}, function(err, model) { 
-    if(err) { return res.send(err); }
-    console.log('abstract models : ',model)
-    return res.status(200).json(model);
-    });
+
+    controller.create(req,res);
 }
 
 controller.index = (req,res) => {

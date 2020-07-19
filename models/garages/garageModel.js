@@ -16,10 +16,7 @@ var garageSchema = new Schema({
                         type : Boolean,
                         default : false
                     },
-    garageDate : {
-                    type : Date,
-                    default : new Date()
-                    },
+    garageDate : Date,
     userSchema : {
     type : Schema.Types.ObjectId,
     ref: 'user_info'
