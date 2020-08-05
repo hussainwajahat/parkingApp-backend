@@ -38,7 +38,7 @@ controller.sendOneSignalNoti = (req, res) => {
       app_id: process.env.SIGNALONE_APP_ID,
       contents: { "en":  msg},
      // included_segments: ["Subscribed Users"]
-     include_external_user_ids: [req.body.OneToken]
+     include_player_ids: [req.body.OneToken]
   };
 
   pushNoti(message)
