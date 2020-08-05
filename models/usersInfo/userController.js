@@ -23,7 +23,11 @@ controller.updateToken = function(req, res) {
        
     if(err) { return res.send(err); }
     console.log('abstract models : ',model)
-    return res.status(200).json(model);
+    if(model === null){
+      return res.status(200).json({status:false,model:model});
+    }else{
+      return res.status(200).json({status:true,model:model});
+    }
     });
 }
 module.exports = controller;
