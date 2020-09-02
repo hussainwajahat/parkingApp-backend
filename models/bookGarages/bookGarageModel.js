@@ -11,7 +11,7 @@ var bookSchema = new Schema({
   },
   isBooked : Boolean,
   day : String,
-  time : String,
+  timing : String,
   bookDate : Date
 
 });

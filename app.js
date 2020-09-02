@@ -30,6 +30,7 @@ require('./models/passport')(passport);
 app.use('/locations', require('./models/locations'));
 app.use('/garages', require('./models/garages'));
 app.use('/usersInfo', require('./models/usersInfo'));
+app.use('/bookings', require('./models/bookGarages'));
 app.get('/',function(req, res){ 
     res.send("EXPRESS SERVER");
 });
