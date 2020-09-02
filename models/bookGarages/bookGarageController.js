@@ -3,7 +3,8 @@ var Garage = require('./bookGarageModel');
 var controller = abstract(Garage);
 
 controller.create = (req, res) =>   {
-
+    req.body['bookDate'] = new Date();
+    req.body['isBooked'] = false;
     controller.create(req,res);
 }
 
