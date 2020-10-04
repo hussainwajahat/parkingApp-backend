@@ -7,8 +7,8 @@ console.log('Required Book Garage');
 
 router.post('/', bookGarage.index);
 router.post('/bookGarage', bookGarage.garageBooking);
-router.put('/updatebookGarage', bookGarage.update);
-router.post('/con',bookGarage.findGarage);
+router.post('/updatebookGarage', bookGarage.garageBooking);
+router.post('/con',bookGarage.findBooking);
 router.delete('/:id',bookGarage.destroy);
 
 module.exports = router;

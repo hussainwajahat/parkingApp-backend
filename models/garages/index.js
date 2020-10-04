@@ -6,8 +6,8 @@ const router = express.Router();
 console.log('Required Garage');
 
 router.get('/', garage.index);
-router.post('/addGarage', garage.create);
-router.post('/updateGarage', garage.create);
+router.post('/addGarage', garage.createGarage);
+router.post('/updateGarage', garage.createGarage);
 router.post('/con',garage.findGarage);
 router.delete('/:id',garage.destroy);
 
