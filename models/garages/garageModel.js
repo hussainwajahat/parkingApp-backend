@@ -7,7 +7,7 @@ var garageSchema = new Schema({
     location : String,
     days : Array,
     rate : String,
-    timing : String,
+    timing : Array,
     count : {
                 type : Number,
                 default : 0

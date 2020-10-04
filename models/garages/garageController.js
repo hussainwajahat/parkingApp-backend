@@ -4,8 +4,8 @@ var controller = abstract(Garage);
 
 controller.createGarage = (req, res) =>   {
     req.body['garageDate'] = new Date()
-    var query = req.body.id ? {_id : req.body.id} : {location:req.body.location,ownerName:req.body.ownerName}
-    Garage.update(query, req.body, {upsert: true}, function(err, model) { 
+    var query = req.body.id ? {_id : req.body.id} : {location:req.body.location,userSchema:req.body.userInfoId}
+    Garage.findOneAndUpdate(query, req.body, {upsert: true}, function(err, model) { 
     if(err) { return res.send(err); }
     console.log('abstract models : ',model)
     return res.status(200).json(model);
